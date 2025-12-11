@@ -6,7 +6,7 @@ document.getElementById('surveyForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Check if URL is set
-    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzfD09dLRzCjzc8EPUCXbSSi113ln56pgmhhIOFSZDhE8EeNeSFzL18RRjgvXMIHyVbtA/exec' || SCRIPT_URL === '') {
+    if (SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE' || SCRIPT_URL === '') {
         alert('Bitte konfigurieren Sie zuerst die Google Apps Script URL in der Datei script.js!');
         return;
     }
