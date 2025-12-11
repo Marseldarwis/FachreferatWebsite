@@ -66,10 +66,16 @@ function renderCharts() {
     // 4. Pausenzeiten (q6)
     const breakData = processDataForChart('q6');
     createChart('chartBreaks', 'Pause', breakData, ['#FF9F40', '#36A2EB', '#9966FF']);
+
+    // 5. Video Wahl (q11) - NEW
+    const videoData = processDataForChart('q11');
+    createChart('chartVideo', 'Video Wahl', videoData, ['#F6E05E', '#B794F4', '#FC8181']);
 }
 
 function createChart(canvasId, label, dataObj, colors) {
-    const ctx = document.getElementById(canvasId).getContext('2d');
+    const element = document.getElementById(canvasId);
+    if (!element) return; // Safety check
+    const ctx = element.getContext('2d');
     new Chart(ctx, {
         type: 'doughnut', // or 'bar', 'pie'
         data: {
@@ -92,14 +98,14 @@ function renderTextAnswers() {
     const container = document.getElementById('textAnswersContainer');
     container.innerHTML = '';
 
-    // Show last 10 answers for Q11 (Cafeteria improvements)
+    // Show last 10 answers for Q12 (AG Wünsche) - Q11 is now Video Choice
     const reversed = [...surveyData].reverse().slice(0, 10);
 
     reversed.forEach(entry => {
-        if (entry.q11) {
+        if (entry.q12) {
             const div = document.createElement('div');
             div.className = 'answer-item';
-            div.textContent = entry.q11;
+            div.textContent = entry.q12;
             container.appendChild(div);
         }
     });
