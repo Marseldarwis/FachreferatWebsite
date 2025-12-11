@@ -16,7 +16,7 @@ function checkPassword() {
 }
 
 async function loadData() {
-    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbzfD09dLRzCjzc8EPUCXbSSi113ln56pgmhhIOFSZDhE8EeNeSFzL18RRjgvXMIHyVbtA/exec' || SCRIPT_URL === '') {
+    if (SCRIPT_URL.includes('YOUR_GOOGLE_SCRIPT_URL_HERE') || SCRIPT_URL === '') {
         alert('Bitte konfigurieren Sie die URL in admin.js!');
         return;
     }
