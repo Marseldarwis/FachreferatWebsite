@@ -16,10 +16,7 @@ function checkPassword() {
 }
 
 async function loadData() {
-    if (SCRIPT_URL.includes('YOUR_GOOGLE_SCRIPT_URL_HERE') || SCRIPT_URL === '') {
-        alert('Bitte konfigurieren Sie die URL in admin.js!');
-        return;
-    }
+
 
     try {
         const response = await fetch(SCRIPT_URL);
