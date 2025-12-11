@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Auswertung</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-section {
+            display: none;
+            /* Hidden by default */
+        }
+
+        #loginSection {
+            text-align: center;
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        .text-answers {
+            max-height: 300px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .answer-item {
+            border-bottom: 1px solid #ccc;
+            padding: 0.5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+        </header>
+
+        <!-- Login Section -->
+        <div id="loginSection" class="question-card">
+            <h3>Bitte Passwort eingeben</h3>
+            <input type="password" id="passwordInput" placeholder="Passwort"
+                style="width: 100%; padding: 10px; margin-bottom: 10px;">
+            <button onclick="checkPassword()">Login</button>
+            <p id="loginError" class="error hidden" style="margin-top: 10px;">Falsches Passwort!</p>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="dashboard-section">
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <button onclick="resetData()"
+                    style="width: auto; background: #e53e3e; font-size: 1rem; padding: 0.8rem;">⚠️ Daten
+                    zurücksetzen</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="question-card">
+                    <h3>Altersverteilung</h3>
+                    <div class="chart-container">
+                        <canvas id="chartAge"></canvas>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3>Zufriedenheit</h3>
+                    <div class="chart-container">
+                        <canvas id="chartSatisfaction"></canvas>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3>Lieblingsfächer</h3>
+                    <div class="chart-container">
+                        <canvas id="chartSubjects"></canvas>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3>Pausenzeiten</h3>
+                    <div class="chart-container">
+                        <canvas id="chartBreaks"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" style="margin-top: 2rem;">
+                <h3>Letzte Text-Antworten (Verbesserungsvorschläge)</h3>
+                <div class="text-answers" id="textAnswersContainer">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+
+</html>

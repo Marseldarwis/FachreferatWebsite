@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schul-Umfrage</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>Schul-Umfrage</h1>
+            <p>Deine Meinung zählt! Bitte beantworte die folgenden 15 Fragen.</p>
+        </header>
+
+        <form id="surveyForm">
+            <!-- Multiple Choice Questions -->
+            <div class="question-card">
+                <h3>1. Wie alt bist du?</h3>
+                <label><input type="radio" name="q1" value="unter 15" required> Unter 15</label>
+                <label><input type="radio" name="q1" value="15-18"> 15 - 18</label>
+                <label><input type="radio" name="q1" value="über 18"> Über 18</label>
+            </div>
+
+            <div class="question-card">
+                <h3>2. Geschlecht?</h3>
+                <label><input type="radio" name="q2" value="Männlich" required> Männlich</label>
+                <label><input type="radio" name="q2" value="Weiblich"> Weiblich</label>
+                <label><input type="radio" name="q2" value="Divers"> Divers</label>
+                <label><input type="radio" name="q2" value="Keine Angabe"> Keine Angabe</label>
+            </div>
+
+            <div class="question-card">
+                <h3>3. Wie zufrieden bist du mit der Schule allgemein?</h3>
+                <label><input type="radio" name="q3" value="Sehr zufrieden" required> Sehr zufrieden</label>
+                <label><input type="radio" name="q3" value="Zufrieden"> Zufrieden</label>
+                <label><input type="radio" name="q3" value="Neutral"> Neutral</label>
+                <label><input type="radio" name="q3" value="Unzufrieden"> Unzufrieden</label>
+            </div>
+
+            <div class="question-card">
+                <h3>4. Nutzt du die Cafeteria?</h3>
+                <label><input type="radio" name="q4" value="Ja, regelmäßig" required> Ja, regelmäßig</label>
+                <label><input type="radio" name="q4" value="Ab und zu"> Ab und zu</label>
+                <label><input type="radio" name="q4" value="Nein"> Nein</label>
+            </div>
+
+            <div class="question-card">
+                <h3>5. Welches ist dein Lieblingsfachfeld?</h3>
+                <label><input type="radio" name="q5" value="Sprachen" required> Sprachen</label>
+                <label><input type="radio" name="q5" value="MINT (Mathe, Info, Naturw.)"> MINT</label>
+                <label><input type="radio" name="q5" value="Sport"> Sport</label>
+                <label><input type="radio" name="q5" value="Kunst/Musik"> Kunst/Musik</label>
+                <label><input type="radio" name="q5" value="Gesellschaftswissenschaften"> Gesellschaftswissenschaften</label>
+            </div>
+
+            <div class="question-card">
+                <h3>6. Wie findest du die Pausenzeiten?</h3>
+                <label><input type="radio" name="q6" value="Zu kurz" required> Zu kurz</label>
+                <label><input type="radio" name="q6" value="Genau richtig"> Genau richtig</label>
+                <label><input type="radio" name="q6" value="Zu lang"> Zu lang</label>
+            </div>
+
+            <div class="question-card">
+                <h3>7. Fühlst du dich sicher an der Schule?</h3>
+                <label><input type="radio" name="q7" value="Ja, immer" required> Ja, immer</label>
+                <label><input type="radio" name="q7" value="Meistens"> Meistens</label>
+                <label><input type="radio" name="q7" value="Selten"> Selten</label>
+                <label><input type="radio" name="q7" value="Nein"> Nein</label>
+            </div>
+
+            <div class="question-card">
+                <h3>8. Wie bewertest du die Sauberkeit?</h3>
+                <label><input type="radio" name="q8" value="Sehr gut" required> Sehr gut</label>
+                <label><input type="radio" name="q8" value="Gut"> Gut</label>
+                <label><input type="radio" name="q8" value="Befriedigend"> Befriedigend</label>
+                <label><input type="radio" name="q8" value="Schlecht"> Schlecht</label>
+            </div>
+
+            <div class="question-card">
+                <h3>9. Wie ist die technische Ausstattung (WLAN, Beamer)?</h3>
+                <label><input type="radio" name="q9" value="Modern" required> Modern</label>
+                <label><input type="radio" name="q9" value="Okay"> Okay</label>
+                <label><input type="radio" name="q9" value="Veraltet"> Veraltet</label>
+            </div>
+
+            <div class="question-card">
+                <h3>10. Würdest du die Schule weiterempfehlen?</h3>
+                <label><input type="radio" name="q10" value="Ja" required> Ja</label>
+                <label><input type="radio" name="q10" value="Vielleicht"> Vielleicht</label>
+                <label><input type="radio" name="q10" value="Nein"> Nein</label>
+            </div>
+
+            <!-- Text Questions -->
+            <div class="question-card">
+                <h3>11. Was würdest du an der Cafeteria verbessern?</h3>
+                <textarea name="q11" placeholder="Deine Meinung..." rows="3" required></textarea>
+            </div>
+
+            <div class="question-card">
+                <h3>12. Welche AGs oder Projekte wünschst du dir?</h3>
+                <textarea name="q12" placeholder="Deine Wünsche..." rows="3" required></textarea>
+            </div>
+
+            <div class="question-card">
+                <h3>13. Was gefällt dir am besten an der Schule?</h3>
+                <textarea name="q13" placeholder="Das Beste ist..." rows="3" required></textarea>
+            </div>
+
+            <div class="question-card">
+                <h3>14. Wo siehst du den größten Handlungsbedarf?</h3>
+                <textarea name="q14" placeholder="Hier muss etwas passieren..." rows="3" required></textarea>
+            </div>
+
+            <div class="question-card">
+                <h3>15. Hast du sonstiges Feedback zur Umfrage?</h3>
+                <textarea name="q15" placeholder="Feedback..." rows="3" required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Absenden</button>
+        </form>
+        
+        <div id="message" class="hidden"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
