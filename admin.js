@@ -69,9 +69,9 @@ function renderCharts() {
     const motData = processDataForChart('q2', ['A', 'B', 'C', 'D']);
     createHorizontalBarChart('chartMotivation', 'Motivation Autonomes Fahren', motData, ['#4299E1', '#48BB78', '#ED8936', '#F56565']);
 
-    // 2. Zufriedenheit (q3)
-    const satData = processDataForChart('q3');
-    createChart('chartSatisfaction', 'Zufriedenheit', satData, ['#4BC0C0', '#9966FF', '#FF9F40', '#E7E9ED']);
+    // 3. Sensor-Wissen (q3) - NEW Quiz
+    const sensorScores = calculateSensorQuizScores();
+    createBarChart('chartSensors', 'Richtige Antworten (%)', sensorScores, '#805AD5');
 
     // 3. Lieblingsfach (q5)
     const subjData = processDataForChart('q5');
@@ -179,6 +179,73 @@ function createHorizontalBarChart(canvasId, label, dataObj, colors) {
                     beginAtZero: true,
                     ticks: {
                         stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+}
+
+function calculateSensorQuizScores() {
+    // Key:
+    // q3_1: C
+    // q3_2: D
+    // q3_3: A
+    // q3_4: B
+    // q3_5: B
+    // q3_6: C
+
+    // Total count of responses
+    const total = surveyData.length;
+    if (total === 0) return { "Erster Sensor (C)": 0, "Nässe/Nebel (D)": 0, "Punktwolke (A)": 0, "5m (B)": 0, "Funk (B)": 0, "Häufigkeit (C)": 0 };
+
+    // Counts
+    let c1 = 0, c2 = 0, c3 = 0, c4 = 0, c5 = 0, c6 = 0;
+
+    surveyData.forEach(entry => {
+        if (entry.q3_1 === 'C') c1++;
+        if (entry.q3_2 === 'D') c2++;
+        if (entry.q3_3 === 'A') c3++;
+        if (entry.q3_4 === 'B') c4++;
+        if (entry.q3_5 === 'B') c5++;
+        if (entry.q3_6 === 'C') c6++;
+    });
+
+    return {
+        "Erster Sensor (C)": (c1 / total * 100).toFixed(1),
+        "Nässe/Nebel (D)": (c2 / total * 100).toFixed(1),
+        "Punktwolke (A)": (c3 / total * 100).toFixed(1),
+        "5m (B)": (c4 / total * 100).toFixed(1),
+        "Funk (B)": (c5 / total * 100).toFixed(1),
+        "Häufigkeit (C)": (c6 / total * 100).toFixed(1)
+    };
+}
+
+function createBarChart(canvasId, label, dataObj, color) {
+    const element = document.getElementById(canvasId);
+    if (!element) return;
+    const ctx = element.getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(dataObj),
+            datasets: [{
+                label: label,
+                data: Object.values(dataObj),
+                backgroundColor: color,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Prozent Richtig'
                     }
                 }
             }
