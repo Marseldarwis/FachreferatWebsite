@@ -90,7 +90,7 @@ function renderCharts() {
     // Green: Geschwindigkeit, Spurhaltung
     // Red: Bremsgeschwindigkeit
     const detailData = processDataForChart('q11_details', ['Geschwindigkeit', 'Spurhaltung', 'Bremsgeschwindigkeit']);
-    createBarChart('chartVideoDetails', 'Beobachtungen', detailData, ['#48BB78', '#48BB78', '#F56565']);
+    createObservationChart('chartVideoDetails', 'Beobachtungen (Anzahl)', detailData, ['#48BB78', '#48BB78', '#F56565']);
 }
 
 function createChart(canvasId, label, dataObj, colors) {
@@ -274,4 +274,39 @@ function processVideoChoiceData() {
     });
 
     return { "Richtig (Mensch)": correct, "Falsch (Autonom)": wrong };
+}
+
+function createObservationChart(canvasId, label, dataObj, color) {
+    const element = document.getElementById(canvasId);
+    if (!element) return;
+    const ctx = element.getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(dataObj),
+            datasets: [{
+                label: label,
+                data: Object.values(dataObj),
+                backgroundColor: color,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 30, // Max count 30 as requested
+                    title: {
+                        display: true,
+                        text: 'Anzahl Antworten'
+                    },
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
 }
