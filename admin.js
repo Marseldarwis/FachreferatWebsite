@@ -206,7 +206,7 @@ function calculateSensorQuizScores() {
         if (entry.q3_1 === 'C') c1++;
         if (entry.q3_2 === 'D') c2++;
         if (entry.q3_3 === 'A') c3++;
-        if (entry.q3_4 === 'B') c4++;
+        if (entry.q3_4 === 'C') c4++;
         if (entry.q3_5 === 'B') c5++;
         if (entry.q3_6 === 'C') c6++;
     });
@@ -215,7 +215,7 @@ function calculateSensorQuizScores() {
         "Erster Sensor (C)": (c1 / total * 100).toFixed(1),
         "Nässe/Nebel (D)": (c2 / total * 100).toFixed(1),
         "Punktwolke (A)": (c3 / total * 100).toFixed(1),
-        "5m (B)": (c4 / total * 100).toFixed(1),
+        "5m (C)": (c4 / total * 100).toFixed(1),
         "Funk (B)": (c5 / total * 100).toFixed(1),
         "Häufigkeit (C)": (c6 / total * 100).toFixed(1)
     };
