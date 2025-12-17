@@ -41,7 +41,13 @@ function processDataForChart(key) {
     surveyData.forEach(entry => {
         const val = entry[key];
         if (val) {
-            counts[val] = (counts[val] || 0) + 1;
+            // Split by comma for multiple choice support (e.g. "A, B")
+            const parts = val.toString().split(',').map(s => s.trim());
+            parts.forEach(part => {
+                if (part) {
+                    counts[part] = (counts[part] || 0) + 1;
+                }
+            });
         }
     });
     return counts;

@@ -18,7 +18,11 @@ document.getElementById('surveyForm').addEventListener('submit', function (e) {
     const formData = new FormData(this);
     const data = {};
     formData.forEach((value, key) => {
-        data[key] = value;
+        if (data[key]) {
+            data[key] += ', ' + value;
+        } else {
+            data[key] = value;
+        }
     });
 
     // Add timestamp
