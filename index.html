@@ -208,10 +208,12 @@
             </div>
 
             <div class="question-card">
-                <h3>10. Würdest du die Schule weiterempfehlen?</h3>
-                <label><input type="radio" name="q10" value="Ja" required> Ja</label>
-                <label><input type="radio" name="q10" value="Vielleicht"> Vielleicht</label>
-                <label><input type="radio" name="q10" value="Nein"> Nein</label>
+                <h3>10. Wie sehr gefällt dir die aktuelle Umsetzung von Autonomen Fahren?</h3>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <input type="range" name="q10" min="0" max="100" value="50" style="flex: 1;"
+                        oninput="document.getElementById('q10val').textContent = this.value + '%'">
+                    <span id="q10val" style="font-weight: bold; width: 50px;">50%</span>
+                </div>
             </div>
 
             <!-- Text Questions -->

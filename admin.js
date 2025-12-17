@@ -106,6 +106,27 @@ function renderCharts() {
     // Red: Bremsgeschwindigkeit
     const detailData = processDataForChart('q11_details', ['Geschwindigkeit', 'Spurhaltung', 'Bremsgeschwindigkeit']);
     createObservationChart('chartVideoDetails', 'Beobachtungen (Anzahl)', detailData, ['#48BB78', '#48BB78', '#F56565']);
+
+    // 7. Zufriedenheit (q10) - NEW Metric
+    const avgSatisfaction = calculateAverage('q10');
+    const metricEl = document.getElementById('metricQ10');
+    if (metricEl) {
+        metricEl.textContent = avgSatisfaction + '%';
+    }
+}
+
+function calculateAverage(key) {
+    let sum = 0;
+    let count = 0;
+    surveyData.forEach(entry => {
+        const val = parseFloat(entry[key]);
+        if (!isNaN(val)) {
+            sum += val;
+            count++;
+        }
+    });
+    if (count === 0) return 0;
+    return Math.round(sum / count);
 }
 
 function createChart(canvasId, label, dataObj, colors) {
