@@ -243,8 +243,12 @@
             </div>
 
             <div class="question-card">
-                <h3>12. Welche AGs oder Projekte wünschst du dir?</h3>
-                <textarea name="q12" placeholder="Deine Wünsche..." rows="3" required></textarea>
+                <h3>12. Wie gut hat dir das Referat gefallen?</h3>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <input type="range" name="q12" min="0" max="100" value="50" style="flex: 1;"
+                        oninput="document.getElementById('q12val').textContent = this.value + '%'">
+                    <span id="q12val" style="font-weight: bold; width: 50px;">50%</span>
+                </div>
             </div>
 
             <div class="question-card">

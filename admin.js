@@ -113,6 +113,13 @@ function renderCharts() {
     if (metricEl) {
         metricEl.textContent = avgSatisfaction + '%';
     }
+
+    // 8. Referat Bewertung (q12) - NEW Metric
+    const avgRating = calculateAverage('q12');
+    const metricEl12 = document.getElementById('metricQ12');
+    if (metricEl12) {
+        metricEl12.textContent = avgRating + '%';
+    }
 }
 
 function calculateAverage(key) {
@@ -155,14 +162,14 @@ function renderTextAnswers() {
     const container = document.getElementById('textAnswersContainer');
     container.innerHTML = '';
 
-    // Show last 10 answers for Q12 (AG Wünsche) - Q11 is now Video Choice
+    // Show last 10 answers for Q14 (Handlungsbedarf)
     const reversed = [...surveyData].reverse().slice(0, 10);
 
     reversed.forEach(entry => {
-        if (entry.q12) {
+        if (entry.q14) {
             const div = document.createElement('div');
             div.className = 'answer-item';
-            div.textContent = entry.q12;
+            div.textContent = entry.q14;
             container.appendChild(div);
         }
     });
