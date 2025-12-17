@@ -35,9 +35,13 @@ async function loadData() {
     }
 }
 
-function processDataForChart(key) {
+function processDataForChart(key, possibleValues = []) {
     // Counts occurrences of each value for a specific question (key)
     const counts = {};
+    if (possibleValues) {
+        possibleValues.forEach(val => counts[val] = 0);
+    }
+
     surveyData.forEach(entry => {
         const val = entry[key];
         if (val) {
@@ -45,6 +49,8 @@ function processDataForChart(key) {
             const parts = val.toString().split(',').map(s => s.trim());
             parts.forEach(part => {
                 if (part) {
+                    // Make sure we count it even if not in possibleValues (unless we want to filter?)
+                    // Usually better to count everything to see errors, but for Q2 we want A,B,C,D
                     counts[part] = (counts[part] || 0) + 1;
                 }
             });
@@ -59,9 +65,8 @@ function renderCharts() {
     createChart('chartAge', 'Alter', ageData, ['#FF6384', '#36A2EB', '#FFCE56']);
 
     // 2. Motivation (q2) - NEW Horizontal Bar
-    const motData = processDataForChart('q2');
-    // Ensure A, B, C, D are present even if 0? processDataForChart only counts present ones.
-    // Ideally we'd merge with default {A:0, B:0, C:0, D:0} but simplest is just render what we have.
+    // Force A, B, C, D to be present
+    const motData = processDataForChart('q2', ['A', 'B', 'C', 'D']);
     createHorizontalBarChart('chartMotivation', 'Motivation Autonomes Fahren', motData, ['#4299E1', '#48BB78', '#ED8936', '#F56565']);
 
     // 2. Zufriedenheit (q3)
