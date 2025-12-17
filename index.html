@@ -21,14 +21,20 @@
             <!-- Multiple Choice Questions -->
             <!-- Age Question (Formerly Q1, moved to pos 11) -->
             <!-- Video Question (Now Q1) -->
+            <!-- Video Question (Now Q1) -->
             <div class="question-card">
-                <h3>1. Welches Video gefällt dir besser?</h3>
-                <div class="video-options" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <h3>1. Welches Video ist von einem Menschen gefahren?</h3>
+                <p style="margin-bottom: 15px;">
+                    Die beiden Videos zeigen, wie ein Auto eine identische Strecke fährt. In einem fährt ein Mensch, im
+                    anderen fährt das Auto autonom. Beide Videos sind Eigenaufnahmen und geben reelle Bedingungen für
+                    einen Vergleich. Kreuze nach dem Anschauen die Unterschiede, die dir auffallen an.
+                </p>
+                <div class="video-options" style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
                     <label style="flex: 1; min-width: 300px; display: block;">
                         <input type="radio" name="q11" value="Video 1" required style="margin-bottom: 10px;">
                         <strong>Video 1</strong>
                         <div style="margin-top: 10px; border-radius: 8px; overflow: hidden;">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/UVlciMXg_PE"
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/90-Qyd0gnnc"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
@@ -39,11 +45,27 @@
                         <input type="radio" name="q11" value="Video 2">
                         <strong>Video 2</strong>
                         <div style="margin-top: 10px; border-radius: 8px; overflow: hidden;">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/_jb0u7INMr4"
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/MWHw2IU2d9M"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
+                    </label>
+                </div>
+
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 10px;">Kreuze nach dem Anschauen die Unterschiede, die dir auffallen an:
+                    </h4>
+                    <label style="display:block; margin-bottom: 5px;">
+                        <input type="checkbox" name="q11_details" value="Geschwindigkeit"> Die gleichbleibende
+                        Geschwindigkeit.
+                    </label>
+                    <label style="display:block; margin-bottom: 5px;">
+                        <input type="checkbox" name="q11_details" value="Spurhaltung"> Die Spurhaltung (Wie sich der
+                        Wagen in der Spur hält)
+                    </label>
+                    <label style="display:block; margin-bottom: 5px;">
+                        <input type="checkbox" name="q11_details" value="Bremsgeschwindigkeit"> Die Bremsgeschwindigkeit
                     </label>
                 </div>
             </div>

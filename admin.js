@@ -81,9 +81,16 @@ function renderCharts() {
     const breakData = processDataForChart('q6');
     createChart('chartBreaks', 'Pause', breakData, ['#FF9F40', '#36A2EB', '#9966FF']);
 
-    // 5. Video Wahl (q11) - NEW
-    const videoData = processDataForChart('q11');
-    createChart('chartVideo', 'Video Wahl', videoData, ['#F6E05E', '#B794F4', '#FC8181']);
+    // 5. Video Wahl (q11) - NEW Logic
+    // Valid Answers: Video 1 (Mensch) is CORRECT
+    const videoData = processVideoChoiceData();
+    createChart('chartVideo', 'Mensch erkannt?', videoData, ['#48BB78', '#F56565']); // Green, Red
+
+    // 6. Video Details (q11_details) - NEW Logic
+    // Green: Geschwindigkeit, Spurhaltung
+    // Red: Bremsgeschwindigkeit
+    const detailData = processDataForChart('q11_details', ['Geschwindigkeit', 'Spurhaltung', 'Bremsgeschwindigkeit']);
+    createBarChart('chartVideoDetails', 'Beobachtungen', detailData, ['#48BB78', '#48BB78', '#F56565']);
 }
 
 function createChart(canvasId, label, dataObj, colors) {
@@ -191,7 +198,7 @@ function calculateSensorQuizScores() {
     // q3_1: C
     // q3_2: D
     // q3_3: A
-    // q3_4: B
+    // q3_4: C
     // q3_5: B
     // q3_6: C
 
@@ -251,4 +258,20 @@ function createBarChart(canvasId, label, dataObj, color) {
             }
         }
     });
+}
+
+function processVideoChoiceData() {
+    let correct = 0;
+    let wrong = 0;
+
+    surveyData.forEach(entry => {
+        // "Video 1" is Correct, "Video 2" is Wrong
+        if (entry.q11 && entry.q11.includes('Video 1')) {
+            correct++;
+        } else if (entry.q11 && entry.q11.includes('Video 2')) {
+            wrong++;
+        }
+    });
+
+    return { "Richtig (Mensch)": correct, "Falsch (Autonom)": wrong };
 }
