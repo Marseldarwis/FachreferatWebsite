@@ -60,9 +60,10 @@ function processDataForChart(key, possibleValues = []) {
 }
 
 function renderCharts() {
-    // 1. Alter (q1)
-    const ageData = processDataForChart('q1');
-    createChart('chartAge', 'Alter', ageData, ['#FF6384', '#36A2EB', '#FFCE56']);
+    // 1. Trolley Problem (q1 - previously Age)
+    const trolleyData = processDataForChart('q1');
+    // Using 3 colors for A, B, C
+    createChart('chartAge', 'Entscheidung', trolleyData, ['#F6E05E', '#63B3ED', '#F56565']);
 
     // 2. Motivation (q2) - NEW Horizontal Bar
     // Force A, B, C, D to be present

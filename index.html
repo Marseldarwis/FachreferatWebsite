@@ -216,12 +216,29 @@
             </div>
 
             <!-- Text Questions -->
-            <!-- Age Question (Now Q11) -->
+            <!-- Trolley Problem Question (Formerly Age, internal name q1) -->
             <div class="question-card">
-                <h3>11. Wie alt bist du?</h3>
-                <label><input type="radio" name="q1" value="unter 15" required> Unter 15</label>
-                <label><input type="radio" name="q1" value="15-18"> 15 - 18</label>
-                <label><input type="radio" name="q1" value="über 18"> Über 18</label>
+                <h3>11. Wenn die Sensorik ein Hindernis nicht zu 100 % klassifizieren kann, wie sollte die
+                    Entscheidungslogik bei einer drohenden Kollision programmiert sein?</h3>
+                <div style="margin: 20px 0; text-align: center;">
+                    <img src="Trolley_Problem.jpg" alt="Trolley Problem"
+                        style="width: 100%; max-width: 600px; border-radius: 8px;">
+                </div>
+                <label style="display: block; margin-bottom: 15px;">
+                    <input type="radio" name="q1" value="Defensive/Sicherheit" required>
+                    <strong>A: Defensive / Sicherheit:</strong> Das System leitet immer eine Vollbremsung ein, auch wenn
+                    es nur eine Papiertüte sein könnte
+                </label>
+                <label style="display: block; margin-bottom: 15px;">
+                    <input type="radio" name="q1" value="Pfad-Stabilität">
+                    <strong>B: Pfad-Stabilität:</strong> Das System hält die Spur, außer das Objekt wird zweifelsfrei
+                    als Mensch erkannt
+                </label>
+                <label style="display: block;">
+                    <input type="radio" name="q1" value="Risikominimierung">
+                    <strong>C: Risikominimierung:</strong> Das System wählt den Ausweichweg mit dem geringsten
+                    physikalischen Widerstand, unabhängig von der Objektart.
+                </label>
             </div>
 
             <div class="question-card">
