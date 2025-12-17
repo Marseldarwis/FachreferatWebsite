@@ -74,7 +74,21 @@ function renderCharts() {
     const sensorScores = calculateSensorQuizScores();
     createBarChart('chartSensors', 'Richtige Antworten (%)', sensorScores, '#805AD5');
 
-    // 3. Lieblingsfach (q5)
+    // 4. Sensor Kombination (q4) - NEW Logic
+    // Nein is Correct (Green), Ja is Wrong (Red)
+    const combData = processDataForChart('q4');
+    // Ensure colors map to Ja/Nein if keys are consistent.
+    // If keys are arbitrary order, we might need manual mapping or helper.
+    // Assuming keys "Ja" and "Nein". Note: "Ja" comes first alphabetically? No, "Ja" vs "Nein".
+    // Better to use color array or mapped colors?
+    // Let's rely on standard colors for now or strict mapping?
+    // User requested "Richtige antwort ist Nein".
+    // "Ja" -> Red, "Nein" -> Green.
+    // If we use simple colors array, it depends on key order.
+    // Let's try simple first: ['#F56565', '#48BB78'] for Ja (Red), Nein (Green).
+    createChart('chartSensorsComb', 'Kombination nötig?', combData, ['#F56565', '#48BB78']);
+
+    // 5. Lieblingsfach (q5)
     const subjData = processDataForChart('q5');
     createChart('chartSubjects', 'Fächer', subjData, ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB']);
 
