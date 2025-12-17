@@ -52,6 +52,12 @@ function renderCharts() {
     const ageData = processDataForChart('q1');
     createChart('chartAge', 'Alter', ageData, ['#FF6384', '#36A2EB', '#FFCE56']);
 
+    // 2. Motivation (q2) - NEW Horizontal Bar
+    const motData = processDataForChart('q2');
+    // Ensure A, B, C, D are present even if 0? processDataForChart only counts present ones.
+    // Ideally we'd merge with default {A:0, B:0, C:0, D:0} but simplest is just render what we have.
+    createHorizontalBarChart('chartMotivation', 'Motivation Autonomes Fahren', motData, ['#4299E1', '#48BB78', '#ED8936', '#F56565']);
+
     // 2. Zufriedenheit (q3)
     const satData = processDataForChart('q3');
     createChart('chartSatisfaction', 'Zufriedenheit', satData, ['#4BC0C0', '#9966FF', '#FF9F40', '#E7E9ED']);
@@ -132,4 +138,39 @@ async function resetData() {
         console.error('Error resetting data:', error);
         alert('Netzwerkfehler beim Zurücksetzen.');
     }
+}
+
+function createHorizontalBarChart(canvasId, label, dataObj, colors) {
+    const element = document.getElementById(canvasId);
+    if (!element) return;
+    const ctx = element.getContext('2d');
+
+    // Sort keys A, B, C, D if present? Object.keys usually keeps order but let's be safe or just standard
+    // If we want fixed labels A, B, C, D we need to merge data.
+    // For now simple:
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(dataObj),
+            datasets: [{
+                label: label,
+                data: Object.values(dataObj),
+                backgroundColor: colors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y', // Horizontal bar
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
 }
