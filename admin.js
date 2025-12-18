@@ -120,6 +120,13 @@ function renderCharts() {
     if (metricEl12) {
         metricEl12.textContent = avgRating + '%';
     }
+
+    // 9. Umfrage Bewertung (q13) - NEW Metric
+    const avgSurvey = calculateAverage('q13');
+    const metricEl13 = document.getElementById('metricQ13');
+    if (metricEl13) {
+        metricEl13.textContent = avgSurvey + '%';
+    }
 }
 
 function calculateAverage(key) {

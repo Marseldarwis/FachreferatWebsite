@@ -252,18 +252,17 @@
             </div>
 
             <div class="question-card">
-                <h3>13. Was gefällt dir am besten an der Schule?</h3>
-                <textarea name="q13" placeholder="Das Beste ist..." rows="3" required></textarea>
+                <h3>13. Wie gut hat dir die Umfrage gefallen?</h3>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <input type="range" name="q13" min="0" max="100" value="50" style="flex: 1;"
+                        oninput="document.getElementById('q13val').textContent = this.value + '%'">
+                    <span id="q13val" style="font-weight: bold; width: 50px;">50%</span>
+                </div>
             </div>
 
             <div class="question-card">
-                <h3>14. Wo siehst du den größten Handlungsbedarf?</h3>
+                <h3>14. Verbesserungsvorschläge (Für die schnelleren)</h3>
                 <textarea name="q14" placeholder="Hier muss etwas passieren..." rows="3" required></textarea>
-            </div>
-
-            <div class="question-card">
-                <h3>15. Hast du sonstiges Feedback zur Umfrage?</h3>
-                <textarea name="q15" placeholder="Feedback..." rows="3" required></textarea>
             </div>
 
             <button type="submit" id="submitBtn">Absenden</button>
