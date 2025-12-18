@@ -92,9 +92,12 @@ function renderCharts() {
     const subjData = processDataForChart('q5');
     createChart('chartSubjects', 'Fächer', subjData, ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB']);
 
-    // 4. Pausenzeiten (q6)
-    const breakData = processDataForChart('q6');
-    createChart('chartBreaks', 'Pause', breakData, ['#FF9F40', '#36A2EB', '#9966FF']);
+    // 4. Wahr oder Falsch (q6) - NEW Logic
+    // Q6_1: Wahr (Correct)
+    // Q6_2: Wahr (Correct)
+    // Q6_3: Falsch (Correct)
+    const quizData = calculateTrueFalseQuiz();
+    createBarChart('chartBreaks', 'Richtig beantwortet (%)', quizData, '#38B2AC');
 
     // 5. Level 4 Autonomie (q9) - NEW
     const l4Data = processDataForChart('q9');
@@ -279,6 +282,29 @@ function calculateSensorQuizScores() {
         "5m (C)": (c4 / total * 100).toFixed(1),
         "Funk (B)": (c5 / total * 100).toFixed(1),
         "Häufigkeit (C)": (c6 / total * 100).toFixed(1)
+    };
+}
+
+function calculateTrueFalseQuiz() {
+    // Q6_1: Wahr
+    // Q6_2: Wahr
+    // Q6_3: Falsch
+
+    const total = surveyData.length;
+    if (total === 0) return { "Level 5 (Wahr)": 0, "Mercedes L3 (Wahr)": 0, "Tesla L5 (Falsch)": 0 };
+
+    let c1 = 0, c2 = 0, c3 = 0;
+
+    surveyData.forEach(entry => {
+        if (entry.q6_1 === 'Wahr') c1++;
+        if (entry.q6_2 === 'Wahr') c2++;
+        if (entry.q6_3 === 'Falsch') c3++;
+    });
+
+    return {
+        "Level 5 (Wahr)": (c1 / total * 100).toFixed(1),
+        "Mercedes L3 (Wahr)": (c2 / total * 100).toFixed(1),
+        "Tesla L5 (Falsch)": (c3 / total * 100).toFixed(1)
     };
 }
 
