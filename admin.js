@@ -116,6 +116,10 @@ function renderCharts() {
     const q7Colors = Object.keys(q7Data).map(label => label === 'Aktuatoren' ? '#48BB78' : '#F56565');
     createBarChart('chartAktion', 'Anzahl Antworten', q7Data, q7Colors);
 
+    // 6. Autonome Erfahrung (q8) - NEW
+    const q8Data = processDataForChart('q8');
+    createChart('chartExperience', 'Erfahrung?', q8Data, ['#4299E1', '#ED8936']);
+
     // 5. Level 4 Autonomie (q9) - NEW
     const l4Data = processDataForChart('q9');
     createChart('chartLevel4', 'Einsteigen?', l4Data, ['#48BB78', '#F56565']); // Green (Ja), Red (Nein)
