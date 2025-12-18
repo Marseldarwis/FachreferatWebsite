@@ -88,9 +88,20 @@ function renderCharts() {
     // Let's try simple first: ['#F56565', '#48BB78'] for Ja (Red), Nein (Green).
     createChart('chartSensorsComb', 'Kombination nötig?', combData, ['#F56565', '#48BB78']);
 
-    // 5. Lieblingsfach (q5)
+    // 5. Autonomiestufe (q5)
+    // Level 2 (Correct), Others (Wrong)
     const subjData = processDataForChart('q5');
-    createChart('chartSubjects', 'Fächer', subjData, ['#FF6384', '#4BC0C0', '#FFCE56', '#E7E9ED', '#36A2EB']);
+    // Map colors based on keys. Since keys are full text, we might need a smarter way or just a fixed array if we assume order/keys.
+    // Order in chart usually follows key insertion or alphabetical.
+    // Let's explicitly define color mapping or use a fixed order?
+    // processDataForChart returns an object. Chart.js uses Object.values().
+    // We should probably rely on a helper to ensure colors match labels if we want precision.
+    // Or just assign colors: Green for "Level 2...", Red for others.
+
+    // Quick fix: Map colors dynamically based on label content
+    const q5Colors = Object.keys(subjData).map(label => label.includes('Level 2') ? '#48BB78' : '#F56565');
+
+    createBarChart('chartSubjects', 'Antworten', subjData, q5Colors);
 
     // 4. Wahr oder Falsch (q6) - NEW Logic
     // Q6_1: Wahr (Correct)
