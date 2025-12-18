@@ -96,10 +96,20 @@ function renderCharts() {
         'Level 3: Bedingt automatisiertes Fahren',
         'Level 4: Hochautomatisiertes Fahren'
     ];
-    const subjData = processDataForChart('q5', possibleQ5);
-    const q5Colors = possibleQ5.map(label => label.includes('Level 2') ? '#48BB78' : '#F56565');
+    const subjDataFull = processDataForChart('q5', possibleQ5);
 
-    createObservationChart('chartSubjects', 'Antworten', subjData, q5Colors);
+    // Remap to short labels for the chart
+    const subjDataShort = {};
+    const shortLabels = ['Level 2', 'Level 3', 'Level 4'];
+
+    possibleQ5.forEach((fullLabel, index) => {
+        subjDataShort[shortLabels[index]] = subjDataFull[fullLabel];
+    });
+
+    // Green for Level 2, Red for others
+    const q5Colors = shortLabels.map(label => label === 'Level 2' ? '#48BB78' : '#F56565');
+
+    createObservationChart('chartSubjects', 'Antworten', subjDataShort, q5Colors);
 
     // 4. Wahr oder Falsch (q6) - NEW Logic
     // Q6_1: Wahr (Correct)
@@ -405,6 +415,12 @@ function createObservationChart(canvasId, label, dataObj, color) {
                     },
                     ticks: {
                         stepSize: 1
+                    }
+                },
+                x: {
+                    ticks: {
+                        maxRotation: 0,
+                        minRotation: 0
                     }
                 }
             }
