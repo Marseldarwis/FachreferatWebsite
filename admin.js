@@ -96,6 +96,10 @@ function renderCharts() {
     const breakData = processDataForChart('q6');
     createChart('chartBreaks', 'Pause', breakData, ['#FF9F40', '#36A2EB', '#9966FF']);
 
+    // 5. Level 4 Autonomie (q9) - NEW
+    const l4Data = processDataForChart('q9');
+    createChart('chartLevel4', 'Einsteigen?', l4Data, ['#48BB78', '#F56565']); // Green (Ja), Red (Nein)
+
     // 5. Video Wahl (q11) - NEW Logic
     // Valid Answers: Video 1 (Mensch) is CORRECT
     const videoData = processVideoChoiceData();
