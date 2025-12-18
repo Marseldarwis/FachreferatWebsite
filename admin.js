@@ -110,6 +110,12 @@ function renderCharts() {
     const quizData = calculateTrueFalseQuiz();
     createBarChart('chartBreaks', 'Richtig beantwortet (%)', quizData, '#38B2AC');
 
+    // 5. Fahrzeug Aktion (q7) - NEW
+    const q7Data = processDataForChart('q7');
+    // Color: Aktuatoren = Green, Rest = Red
+    const q7Colors = Object.keys(q7Data).map(label => label === 'Aktuatoren' ? '#48BB78' : '#F56565');
+    createBarChart('chartAktion', 'Anzahl Antworten', q7Data, q7Colors);
+
     // 5. Level 4 Autonomie (q9) - NEW
     const l4Data = processDataForChart('q9');
     createChart('chartLevel4', 'Einsteigen?', l4Data, ['#48BB78', '#F56565']); // Green (Ja), Red (Nein)
