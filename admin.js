@@ -101,7 +101,7 @@ function renderCharts() {
     // Quick fix: Map colors dynamically based on label content
     const q5Colors = Object.keys(subjData).map(label => label.includes('Level 2') ? '#48BB78' : '#F56565');
 
-    createBarChart('chartSubjects', 'Antworten', subjData, q5Colors);
+    createObservationChart('chartSubjects', 'Antworten', subjData, q5Colors);
 
     // 4. Wahr oder Falsch (q6) - NEW Logic
     // Q6_1: Wahr (Correct)
